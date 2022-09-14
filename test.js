@@ -6,6 +6,20 @@ var audioEnable = false;
 var analyserType = "byte"; // byte, float
 var fftSize = 4096;
 var sampleRate = 48000;
+var noteStrings = [
+  "C",
+  "C#",
+  "D",
+  "D#",
+  "E",
+  "F",
+  "F#",
+  "G",
+  "G#",
+  "A",
+  "A#",
+  "B",
+];
 
 function getMicrophone() {
   function onError(res) {
@@ -83,6 +97,11 @@ function initCanvas() {
   freqDomainCell.canvas.height = 200;
 }
 
+function noteFromPitch(frequency) {
+  var noteNum = 12 * (Math.log(frequency / 440) / Math.log(2));
+  return Math.round(noteNum) + 69;
+}
+
 function drawFreqDomain() {
   freqDomainCell.ctx.clearRect(
     0,
@@ -106,8 +125,10 @@ function drawFreqDomain() {
   var x = 0;
 
   var freqStep = sampleRate / fftSize;
-  document.querySelector("#maxFreq").value =
-    frequencyBuffer.indexOf(Math.max(...frequencyBuffer)) * freqStep;
+  var freq = frequencyBuffer.indexOf(Math.max(...frequencyBuffer)) * freqStep;
+  var note = noteStrings[noteFromPitch(freq) % 12];
+
+  document.querySelector("#maxFreq").value = note;
 
   for (var i = 0; i < bufferLength; i++) {
     barHeight = frequencyBuffer[i];
