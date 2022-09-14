@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>webAudioExample-AnalyserNode</title>
+  <script src="test.js" defer></script>
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+  
+  <h1>Web Audio API test - For Firefox</h1>
+  
+  <div class="buttons">
+    <button onclick='getMicrophone()'>get Microphone</button>
+
+    <button onclick="stop()">Stop local stream</button>
+    
+    <button onclick="mute()">mute</button>
+  </div>
+  <div>
+    <h3>Info</h3>
+    <p>Sample Rate: <input id="sampleRate" readonly="true"></input></p>
+    <p>Max freq: <input id="maxFreq" readonly="true"></input></p>
+  </div>
+  <div>
+    <h3>Canvas - Frequency Domain</h3>
+    <canvas id="freqDomain"></canvas>
+  </div>
+  
+  <div>
+    <h3>Option</h3>
+    Gain Node value (main volume) <br>
+    0<input type="range" value="5" max="20" min="0" id="gainNodeVolume" onchange="changeVolume()">20
+  <hr>
+    
+  <br>
+  </div>
+</body>
+</html>

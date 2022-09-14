@@ -1,0 +1,12 @@
+body {
+  background-color: #ddd;
+}
+div {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+  min-width: 650px;
+}
+canvas {
+  background-color: #fff;
+}
